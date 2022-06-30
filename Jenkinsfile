@@ -62,8 +62,8 @@ pipeline {
       steps {
 	  
 		dir('C:\\apache-jmeter-5.3\\bin'){
-		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t C:\\PROGRA~2\\Jenkins\\workspace\\Demo_PL_SD\\SeguriSignLite.jmx -l C:\\PROGRA~2\\Jenkins\\workspace\\Demo_PL_SD\\Rep_Dendimiento.jtl -e -o C:\\reporte'
-
+		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t C:\\PROGRA~2\\Jenkins\\workspace\\Demo_PL_SD\\SeguriSignLite.jmx -l C:\\PROGRA~2\\Jenkins\\workspace\\Demo_PL_SD\\Rep_Dendimiento.jtl -e -o C:\\reporte -Jjmeterengine.force.system.exit=true' 
+		
 		}
         }
     }
