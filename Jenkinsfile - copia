@@ -31,7 +31,7 @@ pipeline {
       steps {
 		script {
 		
-        dir('C:\\reporte'){
+        dir('C:\\xampp\\htdocs\\reports\\test'){
 		try {
 		bat 'DEL /F/Q/S *.* > NUL%'
         bat 'rmdir /q/s sbadmin2-1.0.7'
@@ -43,7 +43,7 @@ pipeline {
         }
         
 		}
-        dir('C:\\PROGRA~2\\Jenkins\\workspace\\Demo_PL_SD'){
+        dir('C:\\PROGRA~2\\Jenkins\\workspace\\Demo_Jmeter_PL'){
 		try {
 		bat 'DEL /F/Q/S Rep_Dendimiento.jtl > NUL%'
 		}catch (ex) {
@@ -62,7 +62,7 @@ pipeline {
       steps {
 	  
 		dir('C:\\apache-jmeter-5.3\\bin'){
-		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t C:\\PROGRA~2\\Jenkins\\workspace\\Demo_PL_SD\\SeguriSignLite.jmx -l C:\\PROGRA~2\\Jenkins\\workspace\\Demo_PL_SD\\Rep_Dendimiento.jtl -e -o C:\\reporte'
+		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t C:\\PROGRA~2\\Jenkins\\workspace\\Demo_Jmeter_PL\\Demo_Prueba_Rendimiento.jmx -l C:\\PROGRA~2\\Jenkins\\workspace\\Demo_Jmeter_PL\\Rep_Dendimiento.jtl -e -o C:\\xampp\\htdocs\\reports\\test'
 
 		}
         }
@@ -70,7 +70,7 @@ pipeline {
 
     stage('Report') {
       steps {
-		publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: "C:/reporte", reportFiles: 'index.html', reportName: 'Reporte de Rendimiento HTML', reportTitles: 'Reporte de Rendimiento HTML'])
+		publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: "C:/xampp/htdocs/reports/test", reportFiles: 'index.html', reportName: 'Reporte de Rendimiento HTML', reportTitles: 'Reporte de Rendimiento HTML'])
 		perfReport filterRegex: '', relativeFailedThresholdNegative: 1.2, relativeFailedThresholdPositive: 1.89, relativeUnstableThresholdNegative: 1.8, relativeUnstableThresholdPositive: 1.5, sourceDataFiles: 'Rep_Dendimiento.jtl'
 
       }
