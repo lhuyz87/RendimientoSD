@@ -1,0 +1,8 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1639688416865,1184,Paso 1 - GET Lista Negra Persona,200,OK,Thread Group 1-1,text,true,,782,754,1,1,https://apitest.rimac.com/vehicular/V1/cotizacion/riesgoPersona/validar,1180,0,647
+1639688418054,1129,Paso 2 - GET Datos Vehiculares,200,OK,Thread Group 1-1,text,true,,1393,629,1,1,https://apitest.rimac.com/vehicular/V1/vehiculo/datosgenerales/validar/BDX035,1129,0,0
+1639688419276,926,Paso 3 - GET Listar Marcas,200,OK,Thread Group 1-1,text,true,,829,620,1,1,https://apitest.rimac.com/vehicular/V1/vehiculo/marcas?desMarca=FORD,926,0,0
+1639688420206,856,Paso 4 - GET Listar Modelos,200,OK,Thread Group 1-1,text,true,,1924,634,1,1,https://apitest.rimac.com/vehicular/V1/vehiculo/marcas/137/modelos?desModelo=FOCUS,856,0,0
+1639688421064,658,Paso 5 - GET Valor Comercial,200,OK,Thread Group 1-1,text,true,,1028,657,1,1,https://apitest.rimac.com/vehicular/V1/vehiculo/valorcomercial?anhoFab=2018&codModelo=137092&codMarca=137,658,0,0
+1639688421725,2346,Paso 6 - POST CrearCotizacion,200,OK,Thread Group 1-1,text,true,,16834,2275,1,1,https://apitest.rimac.com/vehicular/V1/cotizacion,2255,0,0
+1639688424074,1103,Paso 13 - PATCH Agregar Motor y Chasis,200,OK,Thread Group 1-1,text,true,,767,1250,1,1,https://apitest.rimac.com/vehicular/V1/cotizacion,1103,0,0
