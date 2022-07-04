@@ -23,6 +23,9 @@ pipeline {
 
     stage('Build') {
       steps {
+	  
+	    bat 'npm install express'
+		bat 'npm init -y'
         bat 'npm install'
       }
     }
