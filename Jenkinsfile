@@ -99,7 +99,7 @@ pipeline {
 			//json_str.each { println it }
             echo 'Se extrae Archivo'
          
-			def parsedJson = new groovy.json.JsonSlurper().parseText(json)
+			def parsedJson = new groovy.json.JsonSlurper().parseText(json_str)
 			def porError= 0
 			def ids = []
 			   if (parsedJson.Total.transaction== "Total") {
