@@ -78,6 +78,47 @@ pipeline {
 
       }
     }
+	
+	 stage('Extract_Result') {
+      steps {
+        script {
+          try {
+            bat("echo ${defTimestamp}")
+            bat ("echo ${WORKSPACE}")
+            File fl = new File("E:/reporte_rendimiento/statistics.json")
+            println("E:/reporte_rendimiento/statistics.json")
+            def jsonSlurper = new JsonSlurper()
+            def obj = jsonSlurper.parseText(fl.text)
+ //         println("Archivo: ${obj}")
+          	def json_str = JsonOutput.toJson(obj)
+			println("Archivo: ${json_str}")
+			//json_str.each { println it }
+            echo 'Se extrae Archivo'
+         
+			def parsedJson = new groovy.json.JsonSlurper().parseText(json)
+			def porError= 0
+			def ids = []
+			   if (parsedJson.Total.transaction== "Total") {
+				porError= parsedJson.Total.errorPct
+			  }
+	   			echo 'Total'
+				println porError
+
+			
+			if(porError>0){
+			error('Failed')
+			}
+
+
+          } catch (Exception e) {
+         	println("Exception: ${e}")
+            echo 'Archivo no existe'
+            error('Failed')
+          }
+        }
+      }
+    }
+
 
   }
 }
