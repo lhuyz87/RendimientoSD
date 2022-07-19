@@ -86,6 +86,7 @@ pipeline {
       steps {
         script {
           try {
+			sleep(10)
             bat("echo ${defTimestamp}")
             bat ("echo ${WORKSPACE}")
             File fl = new File("E:\\reporte_rendimiento\\statistics.json")
