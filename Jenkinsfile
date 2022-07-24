@@ -37,7 +37,7 @@ pipeline {
       steps {
 		script {
 		
-        dir('E:\\reporte_rendimiento'){
+        dir('${WORKSPACE}\\reporte_rendimiento'){
 		try {
 		bat 'DEL /F/Q/S *.* > NUL%'
         bat 'rmdir /q/s sbadmin2-1.0.7'
@@ -49,7 +49,7 @@ pipeline {
         }
         
 		}
-        dir('D:\\Jenkins\\workspace\\Demo_PL_SD_v2'){
+        dir('${WORKSPACE}\\Demo_PL_SD_v2'){
 		try {
 		bat 'DEL /F/Q/S Rep_Dendimiento.jtl > NUL%'
 		}catch (ex) {
@@ -68,7 +68,8 @@ pipeline {
       steps {
 	  
 		dir('E:\\apache-jmeter-5.3\\bin'){
-		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o E:\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
+		//bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o E:\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
+		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t ${WORKSPACE}\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l ${WORKSPACE}\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o ${WORKSPACE}\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
 		
 		}
         }
@@ -76,7 +77,7 @@ pipeline {
 
     stage('Report') {
       steps {
-		publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: "E:/reporte_rendimiento", reportFiles: 'index.html', reportName: 'Reporte de Rendimiento HTML', reportTitles: 'Reporte de Rendimiento HTML'])
+		publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: "${WORKSPACE}/reporte_rendimiento", reportFiles: 'index.html', reportName: 'Reporte de Rendimiento HTML', reportTitles: 'Reporte de Rendimiento HTML'])
 		perfReport filterRegex: '', relativeFailedThresholdNegative: 1.2, relativeFailedThresholdPositive: 1.89, relativeUnstableThresholdNegative: 1.8, relativeUnstableThresholdPositive: 1.5, sourceDataFiles: 'Rep_Dendimiento.jtl'
 
       }
