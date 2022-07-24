@@ -69,7 +69,7 @@ pipeline {
 	  
 		dir('E:\\apache-jmeter-5.3\\bin'){
 		//bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o E:\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
-		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o D:\\Jenkins\\workspace\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
+		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
 		
 		}
         }
