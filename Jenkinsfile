@@ -37,7 +37,7 @@ pipeline {
       steps {
 		script {
 		
-        dir('D:\\Jenkins\\workspace\\reporte_rendimiento'){
+        dir('D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\reporte_rendimiento'){
 		try {
 		bat 'DEL /F/Q/S *.* > NUL%'
         bat 'rmdir /q/s sbadmin2-1.0.7'
