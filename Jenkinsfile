@@ -37,7 +37,7 @@ pipeline {
       steps {
 		script {
 		
-        dir('C:\\agent\\WorkSpace\\workspace\\Demo_PL_SD_v2\\reporte_rendimiento'){
+        dir('C:\\agent\\WorkSpace\\workspace\\RendimientoDemo\\reporte_rendimiento'){
 		try {
 		bat 'DEL /F/Q/S *.* > NUL%'
         bat 'rmdir /q/s sbadmin2-1.0.7'
@@ -49,7 +49,7 @@ pipeline {
         }
         
 		}
-        dir('C:\\agent\\WorkSpace\\workspace\\Demo_PL_SD_v2'){
+        dir('C:\\agent\\WorkSpace\\workspace\\RendimientoDemo'){
 		try {
 		bat 'DEL /F/Q/S Rep_Dendimiento.jtl > NUL%'
 		}catch (ex) {
@@ -68,8 +68,8 @@ pipeline {
       steps {
 	  
 		dir('C:\\apache-jmeter-5.3\\bin'){
-		//bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o E:\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
-		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t C:\\agent\\WorkSpace\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l C:\\agent\\WorkSpace\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o C:\\agent\\WorkSpace\\workspace\\Demo_PL_SD_v2\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
+		//bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t D:\\Jenkins\\workspace\\RendimientoDemo\\SeguriSignLite.jmx -l D:\\Jenkins\\workspace\\RendimientoDemo\\Rep_Dendimiento.jtl -e -o E:\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
+		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t C:\\agent\\WorkSpace\\workspace\\RendimientoDemo\\SeguriSignLite.jmx -l C:\\agent\\WorkSpace\\workspace\\RendimientoDemo\\Rep_Dendimiento.jtl -e -o C:\\agent\\WorkSpace\\workspace\\RendimientoDemo\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
 		
 		}
         }
@@ -77,7 +77,7 @@ pipeline {
 
     stage('Report') {
       steps {
-		publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: "C:/agent/WorkSpace/workspace/Demo_PL_SD_v2/reporte_rendimiento", reportFiles: 'index.html', reportName: 'Reporte de Rendimiento HTML', reportTitles: 'Reporte de Rendimiento HTML'])
+		publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: "C:/agent/WorkSpace/workspace/RendimientoDemo/reporte_rendimiento", reportFiles: 'index.html', reportName: 'Reporte de Rendimiento HTML', reportTitles: 'Reporte de Rendimiento HTML'])
 		perfReport filterRegex: '', relativeFailedThresholdNegative: 1.2, relativeFailedThresholdPositive: 1.89, relativeUnstableThresholdNegative: 1.8, relativeUnstableThresholdPositive: 1.5, sourceDataFiles: 'Rep_Dendimiento.jtl'
 
       }
