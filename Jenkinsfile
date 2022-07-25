@@ -8,7 +8,7 @@ def defDate = new Date()
 def defTimestamp = defDateFormat.format(defDate).toString()
 
 pipeline {
-  agent {label 'Slave_1'}
+  agent {label 'Slave_QA2'}
 
 
   options {
@@ -37,7 +37,7 @@ pipeline {
       steps {
 		script {
 		
-        dir('D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\reporte_rendimiento'){
+        dir('C:\\Jenkins\\workspace\\Demo_PL_SD_v2\\reporte_rendimiento'){
 		try {
 		bat 'DEL /F/Q/S *.* > NUL%'
         bat 'rmdir /q/s sbadmin2-1.0.7'
@@ -49,7 +49,7 @@ pipeline {
         }
         
 		}
-        dir('D:\\Jenkins\\workspace\\Demo_PL_SD_v2'){
+        dir('C:\\Jenkins\\workspace\\Demo_PL_SD_v2'){
 		try {
 		bat 'DEL /F/Q/S Rep_Dendimiento.jtl > NUL%'
 		}catch (ex) {
@@ -67,9 +67,9 @@ pipeline {
 	stage('Test') {
       steps {
 	  
-		dir('E:\\apache-jmeter-5.3\\bin'){
+		dir('C:\\apache-jmeter-5.3\\bin'){
 		//bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o E:\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
-		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o D:\\Jenkins\\workspace\\Demo_PL_SD_v2\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
+		bat 'jmeter -jjmeter.save.saveservice.output_format=xml -n -t C:\\Jenkins\\workspace\\Demo_PL_SD_v2\\SeguriSignLite.jmx -l C:\\Jenkins\\workspace\\Demo_PL_SD_v2\\Rep_Dendimiento.jtl -e -o C:\\Jenkins\\workspace\\Demo_PL_SD_v2\\reporte_rendimiento -Jjmeterengine.force.system.exit=true' 
 		
 		}
         }
@@ -77,7 +77,7 @@ pipeline {
 
     stage('Report') {
       steps {
-		publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: "D:/Jenkins/workspace/Demo_PL_SD_v2/reporte_rendimiento", reportFiles: 'index.html', reportName: 'Reporte de Rendimiento HTML', reportTitles: 'Reporte de Rendimiento HTML'])
+		publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: "C:/Jenkins/workspace/Demo_PL_SD_v2/reporte_rendimiento", reportFiles: 'index.html', reportName: 'Reporte de Rendimiento HTML', reportTitles: 'Reporte de Rendimiento HTML'])
 		perfReport filterRegex: '', relativeFailedThresholdNegative: 1.2, relativeFailedThresholdPositive: 1.89, relativeUnstableThresholdNegative: 1.8, relativeUnstableThresholdPositive: 1.5, sourceDataFiles: 'Rep_Dendimiento.jtl'
 
       }
