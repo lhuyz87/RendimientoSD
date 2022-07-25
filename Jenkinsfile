@@ -49,7 +49,7 @@ pipeline {
         }
         
 		}
-        dir(C:\\agent\\WorkSpace\\workspace\\Demo_PL_SD_v2'){
+        dir('C:\\agent\\WorkSpace\\workspace\\Demo_PL_SD_v2'){
 		try {
 		bat 'DEL /F/Q/S Rep_Dendimiento.jtl > NUL%'
 		}catch (ex) {
