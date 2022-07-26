@@ -93,7 +93,7 @@ stage ('Deploy') {
                  paramPublish: null,
  //                publishers: [[configName: 'RetaFTP', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'public', sourceFiles: 'public/*,public/**/*']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
 				 
-                 publishers: [[configName: 'RetaFTP', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'public', sourceFiles: 'public/*']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
+                 publishers: [[configName: 'RetaFTP', transfers: [[asciiMode: false, cleanRemote: false, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'public', sourceFiles: 'public/*']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
   }
   }
 	
