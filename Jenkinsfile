@@ -106,7 +106,7 @@ stage ('Deploy') {
             bat ("echo ${WORKSPACE}")
 			File fl = new File("C:/reporte_rendimiento/reporte_rendimiento/statistics.json")
 			//File fl = new File("${WORKSPACE}/reporte_rendimiento/statistics.json")
-            println("C:/reporte_rendimiento/reporte_rendimiento/statistics.json"")
+            println("C:/reporte_rendimiento/reporte_rendimiento/statistics.json")
             def jsonSlurper = new JsonSlurper()
             def obj = jsonSlurper.parseText(fl.text)
  //         println("Archivo: ${obj}")
