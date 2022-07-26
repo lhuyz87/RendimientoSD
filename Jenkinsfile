@@ -83,6 +83,14 @@ pipeline {
       }
     }
 	
+	stage('Upload'){
+    ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError: false, publishers: [
+        [configName: 'RetaFTP', transfers: [
+            [asciiMode: false, cleanRemote: false, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**.exe, **.txt']
+        ], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true]
+    ]
+	}
+	
 	 stage('Extract_Result') {
       steps {
         script {
