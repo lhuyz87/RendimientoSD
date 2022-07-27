@@ -84,9 +84,12 @@ pipeline {
     }
 
 	
-stage ('Deploy') {
-  steps {
-    ftpPublisher alwaysPublishFromMaster: true,
+
+	
+	 stage('Validación CA') {
+	 
+	 steps {
+		ftpPublisher alwaysPublishFromMaster: true,
                  continueOnError: false,
                  failOnError: false,
                  masterNodeName: '',
@@ -95,9 +98,7 @@ stage ('Deploy') {
 				 
                  publishers: [[configName: 'RetaFTP', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'public/*,reporte_rendimiento/*']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
   }
-  }
-	
-	 stage('Extract_Result') {
+	 
       steps {
         script {
           try {
@@ -114,7 +115,7 @@ stage ('Deploy') {
 			println("Archivo: ${json_str}")
 			//json_str.each { println it }
             echo 'Se extrae Archivo'
-         
+   
 			def parsedJson = new groovy.json.JsonSlurper().parseText(json_str)
 			def porError= 0
 			def ids = []
