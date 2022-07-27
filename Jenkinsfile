@@ -83,7 +83,19 @@ pipeline {
       }
     }
 	
-	 stage('Extract_Result') {
+	stage ('Cargar Reporte SFTP') {
+	steps {
+    ftpPublisher alwaysPublishFromMaster: true,
+                 continueOnError: false,
+                 failOnError: false,
+                 masterNodeName: '',
+                 paramPublish: null,
+		 
+                 publishers: [[configName: 'Itera_FTP', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'public/*,reporte_rendimiento/*']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
+	}
+  }
+	
+	 stage('Validacion de Resultados') {
       steps {
         script {
           try {
@@ -91,8 +103,7 @@ pipeline {
             bat("echo ${defTimestamp}")
             bat ("echo ${WORKSPACE}")
        //     File fl = new File("${WORKSPACE}/reporte_rendimiento/statistics.json")
-			File fl = new File("${WORKSPACE}/reporte_rendimiento/statistics.json")
-            //println("\\LAP-RETA\reporte_rendimiento\statistics.json")
+			File fl = new File("C:/Reportes_Rendimiento/reporte_rendimiento/statistics.json")
             def jsonSlurper = new JsonSlurper()
             def obj = jsonSlurper.parseText(fl.text)
  //         println("Archivo: ${obj}")
@@ -118,7 +129,7 @@ pipeline {
 
           } catch (Exception e) {
          	println("Exception: ${e}")
-            echo 'Archivo no existe'
+            echo 'Termino con erro'
             error('Failed')
           }
         }
