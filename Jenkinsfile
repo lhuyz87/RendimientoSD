@@ -84,12 +84,9 @@ pipeline {
     }
 
 	
-
-	
-	 stage('Validación CA') {
-	 
-	 steps {
-		ftpPublisher alwaysPublishFromMaster: true,
+	stage ('Cargar Reporte SFTP') {
+	steps {
+    ftpPublisher alwaysPublishFromMaster: true,
                  continueOnError: false,
                  failOnError: false,
                  masterNodeName: '',
@@ -98,7 +95,9 @@ pipeline {
 				 
                  publishers: [[configName: 'RetaFTP', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'public/*,reporte_rendimiento/*']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
   }
-	 
+  }
+	
+	 stage('Validacion de Resultados') {
       steps {
         script {
           try {
